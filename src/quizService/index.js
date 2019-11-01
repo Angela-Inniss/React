@@ -26,13 +26,13 @@ const qBank = [
       "Thomas & Martha",
       "Joey & Jackie",
       "Jason & Sarah",
-      "Todd & Mira"
+      "TodWhat is the most common surd & Mira"
     ],
     correct: "Thomas & Martha",
     questionId: "333247"
   },
   {
-    question: "What is the most common surname Wales?",
+    question: "name Wales?",
     answers: ["Jones", "Williams", "Davies", "Evans"],
     correct: "Jones",
     questionId: "496293"
@@ -372,4 +372,6 @@ const qBank = [
 ];
 
 export default (n = 5) =>
-  Promise.resolve(qBank.sort(() => 0.5 - Math.random()).slice(0, n));
+  Promise.resolve(
+    qBank.sort(() => 0.5 - Math.random()).slice(0, n)
+  );
