@@ -86,3 +86,10 @@
   outline: none;
   cursor: pointer;
 }
+
+.correctResponse {
+  color: green;
+}
+.wrongResponse {
+  color: red;
+}

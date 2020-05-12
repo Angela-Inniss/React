@@ -20,22 +20,36 @@ class QuizBee extends Component {
       this.setState({
         qBank: question,
         score: 0,
-        responses: 0// updating state to question from the api service.
+        responses: 0 // updating state to question from the api service.
       });
     });
   };
 
-  // function to  check if answer is equal to correct answer. If it is increase user score from original state by 1
-  computeAnswer = (answer, correct) => {
-    if (answer === correct) {
-      this.setState({
-        score: this.state.score + 1
-      });
-    }
-    // ternary operator to increment number of responses if it's less than 5 as we only have 5 questions displayed at a time.
-    this.setState({
-      responses: this.state.responses < 5 ? this.state.responses + 1 : 5
-    });
+  incrementScore = () => {
+    this.setState(
+      previousState => {
+        return {
+          score: previousState.score + 1
+        };
+      },
+      () => console.log(this.state.score, "correct so increment score"),
+      console.log(this.state.responses, "correct so increment responses")
+    );
+  };
+  incrementResponse = () => {
+    this.setState(
+      previousState => {
+        return {
+          responses: previousState.responses < 5 ? previousState.responses + 1 : 5
+          // responses: previousState.responses + 1
+        };
+      },
+      () =>
+        console.log(
+          this.state.responses,
+          "increment response no matter if correct or incorrect"
+        )
+    );
   };
 
   // The componentDidMount lifecycle method invokes the getQuestions function to set the initial state so we have data to work with.
@@ -47,35 +61,39 @@ class QuizBee extends Component {
     return (
       <div className="container">
         <div className="title">Quiz Me</div>
-          {this.state.qBank.length > 0 &&
-            this.state.responses < 5 &&
-             this.state.qBank.map(quest => {
-                  // destructure - take all elements needed out of the qBank array object so no need to use dot notation
-                   // do this within the map as we want to destructure the OBJECT not the array around it.
-                  const { question, answers, correct, questionId } = quest;
-                    // map over questions and return the component which passes in all the props required by a QuestionBox component.
-                  return (
-                   <QuestionBox
-                     question={question}
-                     options={answers}
-                     key={questionId}
-                     correct={correct}
-                     selected={answer => this.computeAnswer(answer, correct)}
-                   />
-                   )
-                })}
+        {this.state.qBank.length > 0 && // if there are questions available &&
+        this.state.responses < 5 && // the user hasn't finished answering questions &&  map over questions
+          this.state.qBank.map(quest => {
+            // destructure - take all elements needed out of the qBank array object so no need to use dot notation
+            // do this within the map as we want to destructure the OBJECT not the array around it.
+            const { question, answers, correct, questionId } = quest;
+            // map over questions and return the component which passes in all the props required by a QuestionBox component.
+            return (
+              <QuestionBox
+                question={question}
+                options={answers}
+                key={questionId}
+                correct={correct}
+                incrementScore={this.incrementScore}
+                incrementResponse={this.incrementResponse}
+              />
+            );
+          })}
 
-                {this.state.responses === 5 ?
-                  <h2><ResultCard score={this.state.score} getQuestions={this.getQuestions}/></h2>
-                  : null}
-            </div>
-        );
-   }
+        {this.state.responses === 5 && (
+          <h2>
+            <ResultCard
+              score={this.state.score}
+              getQuestions={this.getQuestions}
+            />
+          </h2>
+        )}
+      </div>
+    );
+  }
 }
 ReactDOM.render(<QuizBee />, document.getElementById("root"));
 
-
 // line 46 checks to see if the array has data the questions array has more than 5
 
-
-
+// for each question in the array return a question box
