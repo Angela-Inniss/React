@@ -6,7 +6,7 @@ const QuestionBox = ({
   correct,
   incrementScore,
   incrementResponse,
-  responseClassName
+
 }) => {
   const computeAnswer = answer => {
     if (answer === correct) {
@@ -33,6 +33,7 @@ const QuestionBox = ({
             onClick={() => {
               setAnswerFunction([answer]); // sends the answer clicked by the user to the state on line 6
               computeAnswer(answer); // sends the answer the user clicks to the computeAnswer function and sets the response to correct or wrong.
+
             }}
           >
             {answer}

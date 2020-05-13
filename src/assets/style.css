@@ -73,7 +73,6 @@
 }
 
 .playBtn {
-  position: absolute;
   font-size: 1.4em;
   padding: 10px;
   top: 350px;
@@ -85,6 +84,11 @@
   margin: auto;
   outline: none;
   cursor: pointer;
+}
+
+.playBtnBox{
+  margin:50px;
+  text-align: center;
 }
 
 .correctResponse {

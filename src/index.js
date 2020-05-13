@@ -85,6 +85,19 @@ class QuizBee extends Component {
             <ResultCard
               score={this.state.score}
               getQuestions={this.getQuestions}
+              questions={this.state.qBank.map(quest => {
+                const {question} = quest;
+                return (
+                  question
+                )
+              })}
+              correctAnswer={this.state.qBank.map(quest => {    
+                const {correct} = quest;
+                return (
+                  correct
+                )
+              })}
+                     qbank={this.state.qBank}
             />
           </h2>
         )}
@@ -94,6 +107,5 @@ class QuizBee extends Component {
 }
 ReactDOM.render(<QuizBee />, document.getElementById("root"));
 
-// line 46 checks to see if the array has data the questions array has more than 5
 
-// for each question in the array return a question box
+
