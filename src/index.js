@@ -85,19 +85,8 @@ class QuizBee extends Component {
             <ResultCard
               score={this.state.score}
               getQuestions={this.getQuestions}
-              questions={this.state.qBank.map(quest => {
-                const {question} = quest;
-                return (
-                  question
-                )
-              })}
-              correctAnswer={this.state.qBank.map(quest => {    
-                const {correct} = quest;
-                return (
-                  correct
-                )
-              })}
-                     qbank={this.state.qBank}
+              qbank={this.state.qBank}
+              userAnswer={this.state.qBank.answers}
             />
           </h2>
         )}

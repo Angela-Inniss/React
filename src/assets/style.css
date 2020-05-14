@@ -97,3 +97,11 @@
 .wrongResponse {
   color: red;
 }
+
+.resultCardCorrect {
+  color: green;
+  font-weight: bold;
+  text-align: left;
+  font-size: small;
+  margin-top:20px;
+}
