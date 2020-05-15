@@ -73,7 +73,6 @@
 }
 
 .playBtn {
-  position: absolute;
   font-size: 1.4em;
   padding: 10px;
   top: 350px;
@@ -87,9 +86,22 @@
   cursor: pointer;
 }
 
+.playBtnBox{
+  margin:50px;
+  text-align: center;
+}
+
 .correctResponse {
   color: green;
 }
 .wrongResponse {
   color: red;
+}
+
+.resultCardCorrect {
+  color: green;
+  font-weight: bold;
+  text-align: left;
+  font-size: small;
+  margin-top:20px;
 }

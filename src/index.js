@@ -10,7 +10,8 @@ class QuizBee extends Component {
   state = {
     qBank: [],
     score: 0,
-    responses: 0
+    responses: 0,
+    userAnswer: ""
   };
   // invoking the quiz service api with a function called getQuestions which calls the quizService file and the takes the question
   // from that file and sets it to the value of the questionBank variable i.e sets the new state so the question is populated with questions
@@ -40,7 +41,8 @@ class QuizBee extends Component {
     this.setState(
       previousState => {
         return {
-          responses: previousState.responses < 5 ? previousState.responses + 1 : 5
+          responses:
+            previousState.responses < 5 ? previousState.responses + 1 : 5
           // responses: previousState.responses + 1
         };
       },
@@ -50,6 +52,11 @@ class QuizBee extends Component {
           "increment response no matter if correct or incorrect"
         )
     );
+  };
+  userAnswer = (userAnswer) => {
+    this.setState({ userAnswer: userAnswer}, () => {
+      console.log(userAnswer);
+    });
   };
 
   // The componentDidMount lifecycle method invokes the getQuestions function to set the initial state so we have data to work with.
@@ -76,6 +83,8 @@ class QuizBee extends Component {
                 correct={correct}
                 incrementScore={this.incrementScore}
                 incrementResponse={this.incrementResponse}
+                userAnswer={this.userAnswer}
+
               />
             );
           })}
@@ -85,6 +94,8 @@ class QuizBee extends Component {
             <ResultCard
               score={this.state.score}
               getQuestions={this.getQuestions}
+              qbank={this.state.qBank}
+              userAnswer={this.state.userAnswer}
             />
           </h2>
         )}
@@ -93,7 +104,3 @@ class QuizBee extends Component {
   }
 }
 ReactDOM.render(<QuizBee />, document.getElementById("root"));
-
-// line 46 checks to see if the array has data the questions array has more than 5
-
-// for each question in the array return a question box
