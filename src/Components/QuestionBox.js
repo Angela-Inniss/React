@@ -6,6 +6,7 @@ const QuestionBox = ({
   correct,
   incrementScore,
   incrementResponse,
+  userAnswer
 
 }) => {
   const [response, setResponse] = useState(""); // text to display whether user response is correct or not initially is nothing.
@@ -16,9 +17,11 @@ const QuestionBox = ({
       setResponse("correct");
       incrementScore();
       incrementResponse();
+      userAnswer(answer);
     } else {
       setResponse("sorry wrong!");
       incrementResponse();
+      userAnswer(answer);
     }
   };
 
@@ -34,6 +37,7 @@ const QuestionBox = ({
             onClick={() => {
               setAnswerFunction([answer]); // sends the answer clicked by the user to the state
               computeAnswer(answer); // sends the answer the user clicks to the computeAnswer function and sets the response to correct or wrong.
+              userAnswer(answer)
             }}
           >
             {answer}
